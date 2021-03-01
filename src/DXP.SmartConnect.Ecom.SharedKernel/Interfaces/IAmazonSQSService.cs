@@ -1,8 +1,5 @@
-﻿using Amazon.SQS;
-using Amazon.SQS.Model;
-using System;
+﻿using Amazon.SQS.Model;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DXP.SmartConnect.Ecom.SharedKernel.Interfaces

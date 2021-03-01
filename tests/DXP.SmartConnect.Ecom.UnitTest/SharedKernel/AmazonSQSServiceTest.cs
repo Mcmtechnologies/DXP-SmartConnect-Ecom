@@ -6,9 +6,7 @@ using DXP.SmartConnect.Ecom.SharedKernel.AmazonSQS;
 using DXP.SmartConnect.Ecom.SharedKernel.Interfaces;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace DXP.SmartConnect.Ecom.UnitTests.SharedKernel
