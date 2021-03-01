@@ -42,9 +42,9 @@ namespace DXP.SmartConnect.Ecom.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "SmartConnect Mi9V8 API",
+                    Title = "SmartConnect Ecom API",
                     Version = "v1",
-                    Description = "A SmartConnect ASP.NET Core Web API",
+                    Description = "A SmartConnect Ecom Mi9V8 ASP.NET Core Web API",
                     TermsOfService = new Uri(Configuration.GetSection("ApplicationSettings")["TermsOfService"]),
                     Contact = new OpenApiContact
                     {
@@ -95,7 +95,7 @@ namespace DXP.SmartConnect.Ecom.API
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartConnect Mi9V8 API");
+                c.SwaggerEndpoint("./swagger/v1/swagger.json", "SmartConnect Ecom API");
                 c.RoutePrefix = string.Empty;
             });
         }
