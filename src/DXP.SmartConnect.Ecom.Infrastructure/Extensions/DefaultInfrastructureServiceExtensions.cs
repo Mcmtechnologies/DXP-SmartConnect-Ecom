@@ -25,7 +25,6 @@ namespace DXP.SmartConnect.Ecom.Infrastructure.Extensions
                 .AddHttpClient<IProductWebApiClient, ProductWebApiClient>(client =>
                     client.BaseAddress = new Uri(providerRequestUri))
                 .AddFaultHandlePolicies();
-
             return services;
         }
     }

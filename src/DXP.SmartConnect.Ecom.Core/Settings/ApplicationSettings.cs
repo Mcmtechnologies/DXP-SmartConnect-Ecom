@@ -3,5 +3,6 @@
     public class ApplicationSettings
     {
         public string TermsOfService { get; set; }
+        public string CloudContentUrl { set; get; }
     }
 }

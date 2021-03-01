@@ -4,9 +4,9 @@ using System.Text;
 
 namespace DXP.SmartConnect.Ecom.Core.DTOs
 {
-    public class SizesDto
+    public class CustomFieldsDto
     {
-        public string Size { set; get; }
-        public string ItemKey { set; get; }
+        public int fieldId { get; set; }
+        public string fieldValue { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace DXP.SmartConnect.Ecom.Core.DTOs
         public Nullable<int> LowStock { get; set; }
         public string Information { get; set; }
         public ICollection<ProductVariantDto> ProductVariants { get; set; }
-        public ICollection<ProductAtributeDto> ProductAttributes { get; set; }
+        public ICollection<ProductAttributeDto> ProductAttributes { get; set; }
         public ICollection<ProductCategoryDto> ProductCategories { get; set; }
         public string PriceText { get; set; }
         public string SaleInfo { get; set; }
@@ -51,6 +51,7 @@ namespace DXP.SmartConnect.Ecom.Core.DTOs
         public PointRedemptionDto PointRedemptionInfo { get; set; }
         public string Disclaimer { set; get; }
         public string Ingredients { set; get; }
+        public string DefaultCategory { set; get; }
 
         public static ProductDto FromProduct(Product item)
         {

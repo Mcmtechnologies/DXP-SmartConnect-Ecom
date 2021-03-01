@@ -18,7 +18,7 @@ namespace DXP.SmartConnect.Ecom.Core.Entities
         public ProductUnit UnitOfMeasure { set; get; }
         public ProductUnit UnitOfPrice { set; get; }
         public string Sellby { set; get; }
-        public IDictionary<string, string> Attributes { set; get; }
+        public IDictionary<string, object> Attributes { set; get; }
         public IList<ProductCategory> DefaultCategory { set; get; }
         public IList<ProductCategory> Categories { set; get; }
         public bool IsFavorite { set; get; }
