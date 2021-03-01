@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DXP.SmartConnect.Ecom.FunctionalTests.Api
+namespace DXP.SmartConnect.Ecom.IntegrationTests.Api
 {
     public class ProductControllerTest : IClassFixture<CustomWebApplicationFactory>
     {

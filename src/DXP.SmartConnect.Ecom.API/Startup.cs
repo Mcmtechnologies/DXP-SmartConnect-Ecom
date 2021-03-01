@@ -1,3 +1,4 @@
+using Amazon.SQS;
 using DXP.SmartConnect.Ecom.Core.Interfaces;
 using DXP.SmartConnect.Ecom.Core.Services;
 using DXP.SmartConnect.Ecom.Core.Settings;
@@ -37,6 +38,9 @@ namespace DXP.SmartConnect.Ecom.API
 
             // Default Infrastructure Service DI
             services.AddInfrastructureServiceConfig(Configuration);
+
+            //services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            //services.AddAWSService<IAmazonSQS>();
 
             services.AddSwaggerGen(c =>
             {

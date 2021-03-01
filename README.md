@@ -8,8 +8,12 @@ English version: https://herbertograca.com/2017/11/16/explicit-architecture-01-d
 Viet version: https://edwardthienhoang.wordpress.com/2018/08/24/ket-hop-cac-mau-kien-truc-pattern-vao-trong-mot-ddd-hexagonal-onion-clean-cqrs/
 
 #The SharedKernel Project
-This project contain functions that would likely be shared between multiple projects.
-Do not change it if not necessary (not recommended).
+- This project contain functions that would likely be shared between multiple projects. Do not change it if not necessary (not recommended).
+* Amazon Simple Queue Service
+- Project use Amazon Simple Queue Service for send order data to other microservices.
+- Recomment using the SDK Store (Windows only) to configure AWS credentials.
+- AmazonSQS document: https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html
+- Document required to build project with AmazonSQS: https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/setup.html
 
 #The Core Project
 The Core project is the center of the Clean Architecture design, and all other project dependencies should point toward it (Dependency inversion principle). As such, it has very few external dependencies.
