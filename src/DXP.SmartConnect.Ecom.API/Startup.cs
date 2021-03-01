@@ -1,3 +1,4 @@
+using DXP.SmartConnect.Ecom.API.Configurations;
 using DXP.SmartConnect.Ecom.Core.Interfaces;
 using DXP.SmartConnect.Ecom.Core.Services;
 using DXP.SmartConnect.Ecom.Core.Settings;
@@ -28,6 +29,11 @@ namespace DXP.SmartConnect.Ecom.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<ReadmeSettings>(Configuration.GetSection("ReadmeSettings"));
+            services.Configure<InMemoryCacheSettings>(Configuration.GetSection(nameof(InMemoryCacheSettings)));
+
+            services.Configure<ProductSettings>(Configuration.GetSection(nameof(ProductSettings)));
+
+            services.Configure<ImageSettings>(Configuration.GetSection(nameof(ImageSettings)));
 
             services.AddControllers();
 
@@ -37,6 +43,8 @@ namespace DXP.SmartConnect.Ecom.API
 
             // Default Infrastructure Service DI
             services.AddInfrastructureServiceConfig(Configuration);
+
+            services.UseMapster();
 
             services.AddSwaggerGen(c =>
             {

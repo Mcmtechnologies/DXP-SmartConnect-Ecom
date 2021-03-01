@@ -68,7 +68,7 @@ namespace DXP.SmartConnect.Ecom.SharedKernel.WebApi
             {
                 value = JsonConvert.DeserializeObject<T>(responseContent);
             }
-            catch
+            catch(Exception ex)
             {
                 _logger.LogInformation($"Reason when DeserializeObject: {responseContent}");
             }
