@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DXP.SmartConnect.Ecom.Core.DTOs
 {
-    public class DeptV5Dto
+    public class DeptDto
     {
         public string DeptName { get; set; }
         public string DeptId { get; set; }

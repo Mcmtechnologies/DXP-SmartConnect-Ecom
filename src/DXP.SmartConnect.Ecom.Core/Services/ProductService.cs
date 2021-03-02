@@ -84,24 +84,24 @@ namespace DXP.SmartConnect.Ecom.Core.Services
             return indexes;
         }
 
-        public async Task<ProductPagingV5Dto> SearchProductsV5(ProductSearchExtendedDto searchProductsRequestDto)
+        public async Task<ProductPagingDto> SearchProductPaging(ProductSearchExtendedDto searchProductsRequestDto)
         {
             var productsDto = await this.SearchProductAsync(searchProductsRequestDto);
 
             if (productsDto != null)
-                return _mapper.Map<ProductPagingV5Dto>(productsDto);
+                return _mapper.Map<ProductPagingDto>(productsDto);
             else
                 return null;
         }
 
-        public async Task<ProductPagingV5Dto> SearchTopProducts(ProductSearchExtendedDto searchProductsRequestRo)
+        public async Task<ProductPagingDto> SearchTopProducts(ProductSearchExtendedDto searchProductsRequestRo)
         {
             ProductUpcPagingDto productsDto = await this.SearchTopProductsAsync(searchProductsRequestRo);
 
             if (productsDto == null)
                 return null;
 
-            ProductPagingV5Dto products = ConvertToPagingRO(productsDto);
+            ProductPagingDto products = ConvertToProductPaging(productsDto);
             if (products.Products == null)
                 return null;
 
@@ -155,23 +155,13 @@ namespace DXP.SmartConnect.Ecom.Core.Services
             return null;
         }
 
-        public async Task<DeptPagingv5Dto> GetDeptTopPagingV5(ProductSearchExtendedDto searchProductsRequestDto)
+        public async Task<DeptPagingDto> GetDeptTopPaging(ProductSearchExtendedDto searchProductsRequestDto)
         {
-            var typeDeptConvert = "";
             ProductUpcPagingDto productsDto = await this.SearchTopProductsAsync(searchProductsRequestDto);
             if (productsDto == null)
                 return null;
-            //Convert to From ProductsUPCPagingDto to ProductPagingV5RO
-            if (searchProductsRequestDto.DepartmentId.Count > 0)
-            {
-                typeDeptConvert = "Dept";
-            }
-            else if (searchProductsRequestDto.SubDept1Id.Count > 0)
-            {
-                typeDeptConvert = "SubDept1";
-            }
 
-            DeptPagingv5Dto depts = ConvertToDeptRO(productsDto, typeDeptConvert);
+            DeptPagingDto depts = ConvertToDeptPaging(productsDto);
 
             return depts;
         }
@@ -543,19 +533,19 @@ namespace DXP.SmartConnect.Ecom.Core.Services
             return null;
         }
 
-        private DeptPagingv5Dto ConvertToDeptRO(ProductUpcPagingDto from, string typeDeptConvert)
+        private DeptPagingDto ConvertToDeptPaging(ProductUpcPagingDto from)
         {
-            DeptPagingv5Dto to = new DeptPagingv5Dto();
-            to.Depts = new List<DeptV5Dto>();
+            DeptPagingDto to = new DeptPagingDto();
+            to.Depts = new List<DeptDto>();
             foreach (var dept in from.mhSummary)
             {
-                var deptV5RO = new DeptV5Dto()
+                var deptToAdd = new DeptDto()
                 {
                     DeptName = dept.department,
                     DeptId = dept.departmentId,
                     Products = _mapper.Map<List<ProductDto>>(dept.Products)
                 };
-                to.Depts.Add(deptV5RO);
+                to.Depts.Add(deptToAdd);
             }
 
             to.DeptSummary = from.mwgSummary;
@@ -563,9 +553,9 @@ namespace DXP.SmartConnect.Ecom.Core.Services
             return to;
         }
 
-        private ProductPagingV5Dto ConvertToPagingRO(ProductUpcPagingDto from)
+        private ProductPagingDto ConvertToProductPaging(ProductUpcPagingDto from)
         {
-            ProductPagingV5Dto to = new ProductPagingV5Dto();
+            ProductPagingDto to = new ProductPagingDto();
 
             var productForm = new List<ProductDetailDto>();
 

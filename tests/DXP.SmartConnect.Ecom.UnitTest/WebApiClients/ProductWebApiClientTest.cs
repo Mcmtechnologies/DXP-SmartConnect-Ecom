@@ -31,7 +31,7 @@ namespace DXP.SmartConnect.Ecom.UnitTests.WebApiClients
         public async Task GetProductByUpcAsyncTest_ReturnProduct()
         {
             // arrange 
-            var storeId = "502";
+            var storeId = 502;
             var upc = "00055991071034";
 
             // act
