@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DXP.SmartConnect.Ecom.SharedKernel.Helpers
+﻿namespace DXP.SmartConnect.Ecom.SharedKernel.Helpers
 {
     public static class CacheKeyHelper
     {

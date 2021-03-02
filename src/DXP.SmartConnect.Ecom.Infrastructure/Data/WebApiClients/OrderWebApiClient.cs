@@ -3,11 +3,8 @@ using DXP.SmartConnect.Ecom.Core.Interfaces;
 using DXP.SmartConnect.Ecom.Infrastructure.Constants;
 using DXP.SmartConnect.Ecom.SharedKernel.WebApi;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DXP.SmartConnect.Ecom.Infrastructure.Data.WebApiClients

@@ -32,34 +32,30 @@ namespace DXP.SmartConnect.Ecom.SharedKernel.Middlewares
 
         private async Task LogResponseAsync(HttpContext context)
         {
-            using (var originalBodyStream = context.Response.Body)
+            await using var originalBodyStream = context.Response.Body;
+            try
             {
-                try
-                {
-                    using (var responseBody = _recyclableMemoryStreamManager.GetStream())
-                    {
-                        context.Response.Body = responseBody;
+                await using var responseBody = _recyclableMemoryStreamManager.GetStream();
+                context.Response.Body = responseBody;
 
-                        await _next(context);
+                await _next(context);
 
-                        context.Response.Body.Seek(0, SeekOrigin.Begin);
-                        var text = await new StreamReader(responseBody).ReadToEndAsync();
-                        context.Response.Body.Seek(0, SeekOrigin.Begin);
-                        await responseBody.CopyToAsync(originalBodyStream);
+                context.Response.Body.Seek(0, SeekOrigin.Begin);
+                var text = await new StreamReader(responseBody).ReadToEndAsync();
+                context.Response.Body.Seek(0, SeekOrigin.Begin);
+                await responseBody.CopyToAsync(originalBodyStream);
 
-                        _logger.LogInformation($"Http Response Information:{Environment.NewLine}" +
-                                                $"Schema:{context.Request.Scheme} " +
-                                                $"Host: {context.Request.Host} " +
-                                                $"Path: {context.Request.Path} " +
-                                                $"QueryString: {context.Request.QueryString} " +
-                                                $"Response Body: {text}");
-                    }
-                }
-                finally
-                {
-                    //Always be executed
-                    context.Response.Body = originalBodyStream;
-                }
+                _logger.LogInformation($"Http Response Information:{Environment.NewLine}" +
+                                        $"Schema:{context.Request.Scheme} " +
+                                        $"Host: {context.Request.Host} " +
+                                        $"Path: {context.Request.Path} " +
+                                        $"QueryString: {context.Request.QueryString} " +
+                                        $"Response Body: {text}");
+            }
+            finally
+            {
+                //Always be executed
+                context.Response.Body = originalBodyStream;
             }
         }
 

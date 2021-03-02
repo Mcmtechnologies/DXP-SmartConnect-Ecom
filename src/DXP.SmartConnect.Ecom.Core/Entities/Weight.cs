@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DXP.SmartConnect.Ecom.Core.Entities
 {
@@ -15,7 +13,7 @@ namespace DXP.SmartConnect.Ecom.Core.Entities
         public string Type { set; get; }
         public string Label { set; get; }
         public int? Size { set; get; }
-        public  int? MaxSize { set; get; }
+        public int? MaxSize { set; get; }
         public int? MinSize { set; get; }
         public List<int> Range { set; get; }
     }

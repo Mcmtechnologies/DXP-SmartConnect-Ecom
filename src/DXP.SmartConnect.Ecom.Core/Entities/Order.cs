@@ -1,5 +1,4 @@
 ﻿using DXP.SmartConnect.Ecom.SharedKernel;
-using System;
 using System.Collections.Generic;
 
 namespace DXP.SmartConnect.Ecom.Core.Entities

@@ -94,9 +94,9 @@ namespace DXP.SmartConnect.Ecom.Core.Services
                 return null;
         }
 
-        public async Task<ProductPagingDto> SearchTopProducts(ProductSearchExtendedDto searchProductsRequestRo)
+        public async Task<ProductPagingDto> SearchTopProducts(ProductSearchExtendedDto searchProductsRequestDto)
         {
-            ProductUpcPagingDto productsDto = await this.SearchTopProductsAsync(searchProductsRequestRo);
+            ProductUpcPagingDto productsDto = await this.SearchTopProductsAsync(searchProductsRequestDto);
 
             if (productsDto == null)
                 return null;
@@ -110,7 +110,7 @@ namespace DXP.SmartConnect.Ecom.Core.Services
 
         public async Task<ProductPagingDto> SearchProductAsync(ProductSearchExtendedDto searchProductsRequestDto)
         {
-            ProductSearch mwgResult = new ProductSearch();
+            ProductSearch mwgResult;
 
             if (searchProductsRequestDto.UPCList != null && searchProductsRequestDto.UPCList.Any())
             {
@@ -171,7 +171,7 @@ namespace DXP.SmartConnect.Ecom.Core.Services
             try
             {
                 var storeId = param.ExternalStoreID;
-                var cacheKey = CacheKeyHelper.GetQueryKey(ProductListCacheKey, storeId, HashHelper.ComputeHash(param.UPCList));
+                //var cacheKey = CacheKeyHelper.GetQueryKey(ProductListCacheKey, storeId, HashHelper.ComputeHash(param.UPCList))
 
                 var mwg8ProductMultiSearch = await _productWebApiClient.GetProductByMultiUPCAsync(storeId, param.UPCList);
                 var mwgProducts = ConvertToProductSearch(mwg8ProductMultiSearch);
@@ -351,8 +351,8 @@ namespace DXP.SmartConnect.Ecom.Core.Services
                 {
                     IList<ProductFacet> brands;
                     IList<ProductFacet> categories;
-                    IList<ProductFacet> dietaries;
-                    IList<ProductFacet> sales;
+                    //IList<ProductFacet> dietaries
+                    //IList<ProductFacet> sales
 
                     if (from.Facets.TryGetValue(ProductSearchExtendedDto.Brand, out brands))
                     {
@@ -435,13 +435,13 @@ namespace DXP.SmartConnect.Ecom.Core.Services
                 }
 
                 // Attribute.
-                //string productType = string.Empty;
+                //string productType = string.Empty
                 if (item.Attributes != null && item.Attributes.TryGetValue(ProductAttributeConstants.ItemType, out object prodTypeObj))
                 {
-                    //product.ProductType = productType;
+                    //product.ProductType = productType
                     product.ProductType = prodTypeObj.ToString();
                 }
-                //string totalInStockTxt = string.Empty;
+                //string totalInStockTxt = string.Empty
                 if (item.Attributes != null && item.Attributes.TryGetValue(ProductAttributeConstants.TotalOnHandQty, out object totalInStockObj))
                 {
                     int totalInStock;
@@ -557,7 +557,7 @@ namespace DXP.SmartConnect.Ecom.Core.Services
         {
             ProductPagingDto to = new ProductPagingDto();
 
-            var productForm = new List<ProductDetailDto>();
+            List<ProductDetailDto> productForm;
 
             if (from.page != null)
             {
@@ -583,11 +583,11 @@ namespace DXP.SmartConnect.Ecom.Core.Services
                 FullDescription = p.gfItemDescription,
                 ProductType = p.nameForSales,
                 Price = p.tprPrice != null && (p.regPrice.Equals(p.tprPrice) && ((string.IsNullOrEmpty(p.tprPriceMulti) && p.regPriceMulti == "1") || p.regPriceMulti.Equals(p.tprPriceMulti))) ? 0 : p.regPrice,
-                PriceText = p.tprPrice != null && (p.regPrice.Equals(p.tprPrice) && ((string.IsNullOrEmpty(p.tprPriceMulti) && p.regPriceMulti == "1") || p.regPriceMulti.Equals(p.tprPriceMulti))) ? "" : ConvertPrice(p.regPrice, p.regPriceMulti, p.itemAttributes),
+                PriceText = p.tprPrice != null && (p.regPrice.Equals(p.tprPrice) && ((string.IsNullOrEmpty(p.tprPriceMulti) && p.regPriceMulti == "1") || p.regPriceMulti.Equals(p.tprPriceMulti))) ? "" : ConvertPrice(p.regPrice),
                 ItemSize = !string.IsNullOrEmpty(p.unitSize) ? p.unitSize.ToLower() : p.unitSize,
                 SalePrice = p.tprPrice,
-                SalePriceText = ConvertPrice(p.tprPrice, p.tprPriceMulti, p.itemAttributes),
-                OnSale = p.tprPrice != null ? true : false,
+                SalePriceText = ConvertPrice(p.tprPrice),
+                OnSale = p.tprPrice != null,
                 UPC = p.upc,
                 ExternalId = p.mwgProductGuid,
                 Category = p.department,
@@ -650,13 +650,13 @@ namespace DXP.SmartConnect.Ecom.Core.Services
             }
             else
             {
-                to.BrandSummary = from.brandSummary ?? null;
+                to.BrandSummary = from.brandSummary;
             }
 
             return to;
         }
 
-        private string ConvertPrice(double? value, string multi, IList<ItemAttributesDto> itemAttributes, string shopPath = "")
+        private string ConvertPrice(double? value)
         {
             string priceType = string.Empty;
             return String.Format("{0:C}{1}", value, priceType);

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DXP.SmartConnect.Ecom.Core.DTOs
 {
@@ -30,55 +28,55 @@ namespace DXP.SmartConnect.Ecom.Core.DTOs
         public const string OnSale = "On Sale";
 
         public string Keyword { get; set; }
-       
+
         public string ExternalStoreID { get; set; }
-       
+
         public int StoreID { get; set; }
-       
+
         public int PageSize { get; set; }
-       
+
         public int PageNum { get; set; }
-       
+
         public List<string> UPCList { get; set; }
-       
+
         public bool? CheckSumUPC { get; set; }
-       
+
         public List<ProductSortOrderDto> SortOrder { get; set; }
-       
+
         public List<string> SavingsName { get; set; }
-       
+
         public List<string> BrandName { get; set; }
-       
+
         public List<string> DepartmentName { get; set; }
-       
+
         public List<string> DepartmentId { get; set; }
-       
+
         public List<string> SubDept1Id { get; set; }
-       
+
         public List<string> SubDept2Id { get; set; }
-       
+
         public List<int> ItemId { get; set; }
-       
+
         public List<int> ItemNum { get; set; }
-       
+
         public string TprType { get; set; }
-       
+
         public string PromoInd { get; set; }
-       
+
         public string Status { get; set; }
-       
+
         public List<CustomFieldsDto> CustomFields { get; set; }
-       
+
         public bool DisplayMhSummary { get; set; }
-       
+
         public bool IncludedSecondary { get; set; }
-       
+
         public bool DisplayAttributeSummary { get; set; }
-       
+
         public bool DisplayBrandSummary { get; set; }
-       
+
         public bool? PrimaryBarcode { get; set; }
-       
+
         public int? TopItemsNum { get; set; }
     }
 }

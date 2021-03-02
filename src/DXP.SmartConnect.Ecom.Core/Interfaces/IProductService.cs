@@ -9,8 +9,8 @@ namespace DXP.SmartConnect.Ecom.Core.Interfaces
         Task<ProductDto> GetProductByUpcAsync(int storeId, string upc);
         Task<ProductDto> GetProductByUpcDbAsync(string storeId, string upc);
         Task<IList<ProductIndexDto>> GetProductsIndexByKeyword(string keyword, int limit, string storeId);
-        Task<DeptPagingDto> GetDeptTopPaging(ProductSearchExtendedDto searchProductsRequestRo);
+        Task<DeptPagingDto> GetDeptTopPaging(ProductSearchExtendedDto searchProductsRequestDto);
         Task<ProductPagingDto> SearchProductPaging(ProductSearchExtendedDto searchProductsRequestDto);
-        Task<ProductPagingDto> SearchTopProducts(ProductSearchExtendedDto searchProductsRequestRo);
+        Task<ProductPagingDto> SearchTopProducts(ProductSearchExtendedDto searchProductsRequestDto);
     }
 }

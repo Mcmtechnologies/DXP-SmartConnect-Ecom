@@ -1,6 +1,4 @@
-﻿using DXP.SmartConnect.Ecom.Core.DTOs;
-using DXP.SmartConnect.Ecom.Core.Entities;
-using System.Collections.Generic;
+﻿using DXP.SmartConnect.Ecom.Core.Entities;
 using System.Threading.Tasks;
 
 namespace DXP.SmartConnect.Ecom.Core.Interfaces

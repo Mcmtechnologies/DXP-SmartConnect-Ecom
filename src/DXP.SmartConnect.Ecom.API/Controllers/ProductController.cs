@@ -1,7 +1,6 @@
 ﻿using DXP.SmartConnect.Ecom.Core.DTOs;
 using DXP.SmartConnect.Ecom.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

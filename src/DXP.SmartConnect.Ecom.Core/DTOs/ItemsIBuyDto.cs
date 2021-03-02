@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DXP.SmartConnect.Ecom.Core.DTOs
 {
@@ -8,7 +6,7 @@ namespace DXP.SmartConnect.Ecom.Core.DTOs
     {
         public ItemsIBuyDto()
         {
-            upcList = new List<string>(); 
+            upcList = new List<string>();
         }
         public List<string> upcList { get; set; }
     }

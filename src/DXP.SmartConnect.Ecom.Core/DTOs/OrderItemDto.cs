@@ -1,5 +1,4 @@
 ﻿using DXP.SmartConnect.Ecom.Core.Entities;
-using System;
 
 namespace DXP.SmartConnect.Ecom.Core.DTOs
 {
@@ -24,7 +23,7 @@ namespace DXP.SmartConnect.Ecom.Core.DTOs
         public string QuantityRedeemedWithPoints { get; set; }
         public string NumberOfPoints { get; set; }
 
-    
+
         /// <summary>
         /// Transform object from type OrderListItem to type OrderItemDto
         /// </summary>

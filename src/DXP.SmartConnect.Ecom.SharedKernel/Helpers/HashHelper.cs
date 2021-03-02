@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -29,7 +28,7 @@ namespace DXP.SmartConnect.Ecom.SharedKernel.Helpers
                 // And return it
                 return sb.ToString();
             }
-            catch (ArgumentNullException ane)
+            catch
             {
                 return null;
             }
@@ -44,9 +43,9 @@ namespace DXP.SmartConnect.Ecom.SharedKernel.Helpers
                 formatter.Serialize(fs, objectToSerialize);
                 return fs.ToArray();
             }
-            catch (SerializationException se)
+            catch 
             {
-                return null;
+                return fs.ToArray();
             }
             finally
             {

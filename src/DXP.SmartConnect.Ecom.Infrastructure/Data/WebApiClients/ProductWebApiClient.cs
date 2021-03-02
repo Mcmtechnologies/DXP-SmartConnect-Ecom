@@ -33,10 +33,6 @@ namespace DXP.SmartConnect.Ecom.Infrastructure.Data.WebApiClients
         /// <returns>Product detail</returns>
         public async Task<ProductUpc> GetProductByUpcAsync(int storeId, string upc)
         {
-            HttpStatusCode[] productHttpStatusCodesSuccessfully = {
-                HttpStatusCode.OK, // 200
-                HttpStatusCode.NoContent, // 204
-            };
             var path = $"/api/stores/{storeId}/products/{upc}";
             return await GetAsync<ProductUpc>(path);
         }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DXP.SmartConnect.Ecom.Infrastructure.Constants
+﻿namespace DXP.SmartConnect.Ecom.Infrastructure.Constants
 {
     public static class WebApiClientOrderConstants
     {

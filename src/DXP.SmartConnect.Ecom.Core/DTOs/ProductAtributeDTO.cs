@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace DXP.SmartConnect.Ecom.Core.DTOs
+﻿namespace DXP.SmartConnect.Ecom.Core.DTOs
 {
     public class ProductAttributeDto
     {

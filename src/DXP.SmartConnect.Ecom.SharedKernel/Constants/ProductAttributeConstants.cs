@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DXP.SmartConnect.Ecom.SharedKernel.Constants
+﻿namespace DXP.SmartConnect.Ecom.SharedKernel.Constants
 {
     public static class ProductAttributeConstants
     {

@@ -14,7 +14,7 @@ namespace DXP.SmartConnect.Ecom.Core.Interfaces
         /// <param name="skip">Page index </param>
         /// <param name="take">Page size </param>
         /// <returns>List order</returns>
-        Task<OrderPage> GetOrders(string accessToken, string fulfilment, string from, string to, int skip, int take);
+        Task<OrderPage> GetOrders(string accessToken, string fulfilment, string from, string to, int skip = 0, int take = 10);
         /// <summary>
         /// Get order by reference id.
         /// </summary>

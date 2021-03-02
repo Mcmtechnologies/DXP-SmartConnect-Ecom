@@ -1,5 +1,4 @@
 ﻿using DXP.SmartConnect.Ecom.Core.DTOs;
-using DXP.SmartConnect.Ecom.Core.Entities;
 using DXP.SmartConnect.Ecom.Core.Interfaces;
 using DXP.SmartConnect.Ecom.Core.Settings;
 using Microsoft.Extensions.Options;
@@ -31,7 +30,7 @@ namespace DXP.SmartConnect.Ecom.Core.Services
 
             return OrderInfoDto.FromOrder(order);
         }
-        
+
         public async Task<OrderDto> GetOrders()
         {
             var skip = 0;
@@ -42,7 +41,7 @@ namespace DXP.SmartConnect.Ecom.Core.Services
             var orders = new OrderDto();
             if (orderPage.Items?.Any() ?? false)
             {
-                foreach(var item in orderPage.Items)
+                foreach (var item in orderPage.Items)
                 {
                     orders.Orders.Add(OrderInfoDto.FromOrderList(item));
                 }
