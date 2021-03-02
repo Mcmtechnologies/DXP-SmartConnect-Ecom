@@ -35,6 +35,10 @@ namespace DXP.SmartConnect.Ecom.Infrastructure.Extensions
                .AddHttpClient<ICheckoutWebApiClient, CheckoutWebApiClient>(client =>
                    client.BaseAddress = new Uri(providerRequestUri))
                .AddFaultHandlePolicies();
+            services
+            .AddHttpClient<IPurchaseWebApiClient, PurchaseWebApiClient>(client =>
+                   client.BaseAddress = new Uri(providerRequestUri))
+               .AddFaultHandlePolicies();
 
             return services;
         }

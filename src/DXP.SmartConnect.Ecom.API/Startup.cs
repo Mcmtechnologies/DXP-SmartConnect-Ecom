@@ -35,11 +35,14 @@ namespace DXP.SmartConnect.Ecom.API
 
             services.Configure<ImageSettings>(Configuration.GetSection(nameof(ImageSettings)));
 
+            services.Configure<ApplicationSettings>(Configuration.GetSection(nameof(ApplicationSettings)));
+
             services.AddControllers();
 
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<ICheckoutService, CheckoutService>();
+            services.AddScoped<IPurchaseService, PurchaseService>();
 
             // Default Infrastructure Service DI
             services.AddInfrastructureServiceConfig(Configuration);
