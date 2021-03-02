@@ -35,7 +35,7 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// <param name="shoppingModeId">Shopping mode</param>
         /// <param name="startPage">start page with 0</param>
         /// <returns>Timeslots page</returns>
-        // GET: ​api/checkout/timeslot
+        // GET: ​api/checkout/timeslots
         [HttpGet("timeslots")]
         public async Task<TimeSlotsPageDto> GetAvailableSlots(string storeId, string shoppingModeId, int startPage)
         {
@@ -61,7 +61,7 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// <param name="storeId">Store Number</param>
         /// <param name="reservationSlot">Reservation Slot</param>
         /// <returns>Timeslots page</returns>
-        // GET: ​api/checkout/timeslot/select
+        // POST: ​api/checkout/timeslot/select
         [HttpPost("timeslot/select")]
         public async Task<bool> SelectSlot(string storeId, [FromBody] ReservationSlotDto reservationSlot)
         {
@@ -87,7 +87,7 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// <param name="cardType">Card type</param>
         /// <param name="cardNumber">start page with 0</param>
         /// <returns>Status</returns>
-        // GET: ​api/checkout/delete-paymentcard
+        // DELETE: ​api/checkout/delete-paymentcard
         [HttpDelete("delete-paymentcard")]
         public async Task<bool> RemovePaymentCard(string storeId, string cardType, string cardNumber)
         {
@@ -100,7 +100,7 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// <param name="storeId">Store Number</param>
         /// <param name="promoCodeDto">Checkout promo code</param>
         /// <returns>Status</returns>
-        // GET: ​api/checkout/add-promocode
+        // POST: ​api/checkout/add-promocode
         [HttpPost("add-promocode")]
         public async Task<bool> AddPromoCode(string storeId, [FromBody] PromoCodeDto promoCodeDto)
         {
@@ -113,7 +113,7 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// <param name="storeId">Store Number</param>
         /// <param name="notesDto">Checkout notes</param>
         /// <returns>Status</returns>
-        // GET: ​api/checkout/add-notes
+        // POST: ​api/checkout/add-notes
         [HttpPost("add-notes")]
         public async Task<bool> AddCommnent(string storeId, [FromBody] NotesDto notesDto)
         {

@@ -47,5 +47,22 @@ namespace DXP.SmartConnect.Ecom.Infrastructure.Data.WebApiClients
             HttpStatusCode.OK, // 200
             HttpStatusCode.NoContent, // 204
         };
+
+        /// <summary>
+        /// List HttpStatus Codes accepted when order change.
+        /// </summary>
+        public static HttpStatusCode[] OrderChange { get; } = {
+           HttpStatusCode.Accepted // 202
+        };
+
+        /// <summary>
+        /// List HttpStatus Codes get order accepted.
+        /// </summary>
+        public static HttpStatusCode[] GetOrder { get; } = {
+           HttpStatusCode.OK, // 200
+           HttpStatusCode.NoContent, // 204
+           HttpStatusCode.NotFound, // 404
+           HttpStatusCode.NotModified // 304
+        };
     }
 }
