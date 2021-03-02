@@ -13,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
+using Amazon.SQS;
 
 namespace DXP.SmartConnect.Ecom.API
 {
@@ -48,6 +49,9 @@ namespace DXP.SmartConnect.Ecom.API
             services.AddInfrastructureServiceConfig(Configuration);
 
             services.UseMapster();
+
+            services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
+            services.AddAWSService<IAmazonSQS>();
 
             services.AddSwaggerGen(c =>
             {
