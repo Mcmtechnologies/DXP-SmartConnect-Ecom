@@ -4,10 +4,10 @@ using System.Text;
 
 namespace DXP.SmartConnect.Ecom.Core.DTOs
 {
-    public class DeptPagingv5Dto
+    public class DeptPagingDto
     {
         
-        public IList<DeptV5Dto> Depts { get; set; }
+        public IList<DeptDto> Depts { get; set; }
 
         
         public IList<DeptSummaryDto> DeptSummary { get; set; }

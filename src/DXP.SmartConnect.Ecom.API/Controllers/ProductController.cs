@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace DXP.SmartConnect.Ecom.API.Controllers
 {
-    public class InventoryController : BaseApiController
+    public class ProductController : BaseApiController
     {
         private readonly IProductService _productService;
 
-        public InventoryController(IProductService productService)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
         }
@@ -21,10 +21,10 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// </summary>
         /// <param name="searchProductsRequestRo"></param>
         /// <returns></returns>
-        [HttpPost("product/search/v5")]
-        public async Task<ProductPagingV5Dto> SearchProducts(ProductSearchExtendedDto searchProductsRequestRo)
+        [HttpPost("search")]
+        public async Task<ProductPagingDto> SearchProducts(ProductSearchExtendedDto searchProductsRequestRo)
         {
-            return await _productService.SearchProductsV5(searchProductsRequestRo);
+            return await _productService.SearchProductPaging(searchProductsRequestRo);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// <param name="storeId"></param>
         /// <param name="upc"></param>
         /// <returns></returns>
-        [HttpGet("product/get-by-upc")]
+        [HttpGet("get-by-upc")]
         public async Task<ProductDto> SearchProductByUpc(int storeId, string upc)
         {
             return await _productService.GetProductByUpcAsync(storeId, upc);
@@ -44,8 +44,8 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// </summary>
         /// <param name="searchProductsRequestRo"></param>
         /// <returns></returns>
-        [HttpPost("product/search/top/v5")]
-        public async Task<ProductPagingV5Dto> SearchTopProducts(ProductSearchExtendedDto searchProductsRequestRo)
+        [HttpPost("search/top")]
+        public async Task<ProductPagingDto> SearchTopProducts(ProductSearchExtendedDto searchProductsRequestRo)
         {
             return await _productService.SearchTopProducts(searchProductsRequestRo);
         }
@@ -55,10 +55,10 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         /// </summary>
         /// <param name="searchProductsRequestRo"></param>
         /// <returns></returns>
-        [HttpPost("product/dept/top/v5")]
-        public async Task<DeptPagingv5Dto> GetDeptTopPagingV5(ProductSearchExtendedDto searchProductsRequestRo)
+        [HttpPost("dept/top")]
+        public async Task<DeptPagingDto> GetDeptTopPaging(ProductSearchExtendedDto searchProductsRequestRo)
         {
-            return await _productService.GetDeptTopPagingV5(searchProductsRequestRo);
+            return await _productService.GetDeptTopPaging(searchProductsRequestRo);
         }
 
         /// <summary>
