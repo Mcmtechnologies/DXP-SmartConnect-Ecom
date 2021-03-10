@@ -3,8 +3,10 @@ using DXP.SmartConnect.Ecom.Core.Interfaces;
 using DXP.SmartConnect.Ecom.Infrastructure.Constants;
 using DXP.SmartConnect.Ecom.SharedKernel.WebApi;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DXP.SmartConnect.Ecom.Infrastructure.Data.WebApiClients
@@ -60,6 +62,21 @@ namespace DXP.SmartConnect.Ecom.Infrastructure.Data.WebApiClients
             var path = $"instoreorders{skipPath}{takePath}{fromPath}";
 
             return GetAsync<OrderPage>(path, accessToken, null, HttpStatusSuccessCodes.GetOrder);
+        }
+
+        public Task<bool> PlaceOrder(string accessToken, string storeId, string cartVersion)
+        {
+            var path = $"stores/{storeId}/orders";
+
+            var header = new Dictionary<string, string>();
+            header.Add(WebApiClientConstants.HeaderContentType, WebApiClientOrderConstants.PlaceOrder);
+            var body = new
+            {
+                CartVersion = cartVersion
+            };
+            var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, WebApiClientConstants.ApplicationJson);
+
+            return PostAsync<bool>(path, HttpMethod.Post, content, accessToken, header, HttpStatusSuccessCodes.OrderChange);
         }
     }
 }

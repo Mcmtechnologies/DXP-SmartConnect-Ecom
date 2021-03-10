@@ -39,5 +39,12 @@ namespace DXP.SmartConnect.Ecom.Core.Interfaces
         /// <param name="referenceId">Order reference Id </param>
         /// <returns>Order detail</returns>
         Task<bool> CancelOrder(string referenceId);
+        /// <summary>
+        /// Places an order.
+        /// </summary>
+        /// <param name="storeId">Retailer Store Id</param>
+        /// <param name="cartVersion">Cart version </param>
+        /// <returns>Order detail</returns>
+        Task<bool> PlaceOrder(string referenceId, string storeId, string cartVersion);
     }
 }

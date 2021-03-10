@@ -1,6 +1,8 @@
 ﻿using DXP.SmartConnect.Ecom.Core.DTOs;
+using DXP.SmartConnect.Ecom.Core.Events;
 using DXP.SmartConnect.Ecom.Core.Interfaces;
 using DXP.SmartConnect.Ecom.Core.Settings;
+using MediatR;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +13,20 @@ namespace DXP.SmartConnect.Ecom.Core.Services
     public class OrderService : BaseService, IOrderService
     {
         private readonly IOrderWebApiClient _orderWebApiClient;
+        private readonly IMediator _mediator;
         private readonly ApplicationSettings _setting;
+        private readonly AmazonSQSSettings _sqsSetting;
 
-        public OrderService(IOrderWebApiClient orderWebApiClient, IOptions<ApplicationSettings> options)
+        public OrderService(
+            IOrderWebApiClient orderWebApiClient,
+            IMediator mediator,
+            IOptions<ApplicationSettings> options,
+            IOptions<AmazonSQSSettings> sqsOptions)
         {
             _orderWebApiClient = orderWebApiClient;
+            _mediator = mediator;
             _setting = options.Value;
+            _sqsSetting = sqsOptions.Value;
         }
 
         public async Task<bool> CancelOrder(string referenceId)
@@ -81,6 +91,21 @@ namespace DXP.SmartConnect.Ecom.Core.Services
             {
                 result.TotalAmount = totalAmount;
             }
+
+            return result;
+        }
+
+        public async Task<bool> PlaceOrder(string referenceId, string storeId, string cartVersion)
+        {
+            var result = await _orderWebApiClient.PlaceOrder(_setting.AccessToken, storeId, cartVersion);
+
+            // Send order info to Amazon SQS
+            _ = Task.Run(() => _mediator.Publish(new SendOrderInfoEvent
+            {
+                AccessToken = _setting.AccessToken,
+                SQSQueueUrl = _sqsSetting.QueueUrl,
+                OrderReferenceId = referenceId
+            }));
 
             return result;
         }

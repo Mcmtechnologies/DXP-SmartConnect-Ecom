@@ -70,7 +70,7 @@ namespace DXP.SmartConnect.Ecom.SharedKernel.WebApi
             }
             catch (Exception ex)
             {
-                _logger.LogInformation($"Reason when DeserializeObject: {responseContent} is {ex.Message}");
+                _logger.LogError($"Reason when DeserializeObject: {responseContent} is {ex.Message}");
             }
 
             return value;
@@ -124,7 +124,13 @@ namespace DXP.SmartConnect.Ecom.SharedKernel.WebApi
             if (typeof(T) == typeof(bool))
             {
                 if (httpStatusCodesSuccessfully.Contains(response.StatusCode))
+                {
                     value = (T)Convert.ChangeType(true, typeof(T));
+                }
+                else
+                {
+                    _logger.LogError($"Response of {nameof(PostAsync)} url path {path} : {JsonConvert.SerializeObject(response)}");
+                }
             }
             else
             {

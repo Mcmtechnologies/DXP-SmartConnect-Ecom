@@ -1,4 +1,5 @@
 ﻿using DXP.SmartConnect.Ecom.SharedKernel;
+using System.Collections.Generic;
 
 namespace DXP.SmartConnect.Ecom.Core.Entities
 {
@@ -7,7 +8,7 @@ namespace DXP.SmartConnect.Ecom.Core.Entities
         public string Name { set; get; }
         public string Sku { set; get; }
         public string Category { set; get; }
-        public string Image { set; get; }
+        public IDictionary<string, string> Image { set; get; }
         public string Brand { set; get; }
         public string Quantity { set; get; }
         public string Note { set; get; }

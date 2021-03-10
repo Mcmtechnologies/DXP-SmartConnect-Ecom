@@ -1,9 +1,11 @@
+using Amazon.SQS;
 using DXP.SmartConnect.Ecom.API.Configurations;
 using DXP.SmartConnect.Ecom.Core.Interfaces;
 using DXP.SmartConnect.Ecom.Core.Services;
 using DXP.SmartConnect.Ecom.Core.Settings;
 using DXP.SmartConnect.Ecom.Infrastructure.Extensions;
 using DXP.SmartConnect.Ecom.SharedKernel.Extensions;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +15,6 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
-using Amazon.SQS;
 
 namespace DXP.SmartConnect.Ecom.API
 {
@@ -52,6 +53,8 @@ namespace DXP.SmartConnect.Ecom.API
 
             services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
             services.AddAWSService<IAmazonSQS>();
+
+            services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddSwaggerGen(c =>
             {

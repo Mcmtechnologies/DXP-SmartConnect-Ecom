@@ -3,7 +3,6 @@ using DXP.SmartConnect.Ecom.Core.Entities;
 using DXP.SmartConnect.Ecom.Core.Interfaces;
 using DXP.SmartConnect.Ecom.Core.Settings;
 using DXP.SmartConnect.Ecom.SharedKernel.Constants;
-using DXP.SmartConnect.Ecom.SharedKernel.Helpers;
 using MapsterMapper;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

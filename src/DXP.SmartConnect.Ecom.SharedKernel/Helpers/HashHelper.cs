@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
@@ -43,7 +42,7 @@ namespace DXP.SmartConnect.Ecom.SharedKernel.Helpers
                 formatter.Serialize(fs, objectToSerialize);
                 return fs.ToArray();
             }
-            catch 
+            catch
             {
                 return fs.ToArray();
             }

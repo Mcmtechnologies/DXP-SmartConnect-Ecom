@@ -79,5 +79,19 @@ namespace DXP.SmartConnect.Ecom.API.Controllers
         {
             return await _orderService.GetOrderInstoreById(orderId);
         }
+
+        /// <summary>
+        /// Places an Order
+        /// </summary>
+        /// <param name="orderId">Order reference Id</param>
+        /// <param name="storeId">no need for v8</param>
+        /// <param name="cartVersion">Order reference Id</param>
+        /// <returns>Status of command</returns>
+        // POST: ​api/order/cancel
+        [HttpPost("place-order")]
+        public async Task<bool> PlaceOrder(string orderId, string storeId, string cartVersion)
+        {
+            return await _orderService.PlaceOrder(orderId, storeId, cartVersion);
+        }
     }
 }
